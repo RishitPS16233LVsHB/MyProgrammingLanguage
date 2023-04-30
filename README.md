@@ -105,4 +105,8 @@ below is the instructions and guidelines of writing Geralt_Roger_Eric_Du_Haute_B
 
 -also please see some of the sample programs provided to have clear idea 
 
+- to run your script you must type in the following on windows platform:-
+	Geralt_Roger_Eric_Du_Haute_Bellegarde.exe "your file name here" commandargs1,commandargs2,commandarg3.....
+	
+
 Thank you....:)
