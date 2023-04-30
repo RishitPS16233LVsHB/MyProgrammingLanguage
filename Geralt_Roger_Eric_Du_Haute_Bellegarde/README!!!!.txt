@@ -103,6 +103,8 @@ below is the instructions and guidelines of writing Geralt_Roger_Eric_Du_Haute_B
 -the source code for the compiler is provided to in case any inconsistencies or issues or bugs you may add to it and you may add new instructions to the code just be sure to add the new instruction to instruction registry which is set in Instruction.SetRegistry() method
 
 -also please see some of the sample programs
+- to run your script you must type in the following on windows platform:-
+	Geralt_Roger_Eric_Du_Haute_Bellegarde.exe "your file name here" commandargs1,commandargs2,commandarg3.....
 
 Thank you....:)
 
