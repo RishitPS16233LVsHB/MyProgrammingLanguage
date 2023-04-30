@@ -1,0 +1,6 @@
+print "hello world";
+declare string,array,"1";
+input array@0;
+print array@0;
+file array@0,append,".\MyFile.txt";
+halt;

@@ -1,0 +1,7 @@
+C:\Users\hp\Desktop\Geralt_Roger_Eric_Du_Haute_Bellegarde\bin\Debug\Geralt_Roger_Eric_Du_Haute_Bellegarde.exe.config
+C:\Users\hp\Desktop\Geralt_Roger_Eric_Du_Haute_Bellegarde\bin\Debug\Geralt_Roger_Eric_Du_Haute_Bellegarde.exe
+C:\Users\hp\Desktop\Geralt_Roger_Eric_Du_Haute_Bellegarde\bin\Debug\Geralt_Roger_Eric_Du_Haute_Bellegarde.pdb
+C:\Users\hp\Desktop\Geralt_Roger_Eric_Du_Haute_Bellegarde\obj\Debug\Geralt_Roger_Eric_Du_Haute_Bellegarde.csproj.AssemblyReference.cache
+C:\Users\hp\Desktop\Geralt_Roger_Eric_Du_Haute_Bellegarde\obj\Debug\Geralt_Roger_Eric_Du_Haute_Bellegarde.csproj.CoreCompileInputs.cache
+C:\Users\hp\Desktop\Geralt_Roger_Eric_Du_Haute_Bellegarde\obj\Debug\Geralt_Roger_Eric_Du_Haute_Bellegarde.exe
+C:\Users\hp\Desktop\Geralt_Roger_Eric_Du_Haute_Bellegarde\obj\Debug\Geralt_Roger_Eric_Du_Haute_Bellegarde.pdb

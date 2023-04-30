@@ -1,0 +1,13 @@
+declare int,number,1;
+get_type number;
+call print;
+print "after print proc";
+//jump_string_equals print,stack,"System.Int32";
+//halt;
+//label print;
+//print "is int";
+halt;
+label print;
+print "hello hetvi";
+return;
+halt;

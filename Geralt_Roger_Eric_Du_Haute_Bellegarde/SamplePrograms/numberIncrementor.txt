@@ -1,0 +1,11 @@
+declare int,counter,1;
+label loop;
+print counter;
+jump_greater_than toHalt,counter,5;
+add counter,counter,1;
+jump loop;
+label toHalt;
+print "enter a number ";
+input counter;
+print counter;
+halt;

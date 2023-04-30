@@ -1,0 +1,5 @@
+declare string,array,"rishit";
+declare string,array,"hetvi";
+assign stack,array@1;
+print stack;
+halt;

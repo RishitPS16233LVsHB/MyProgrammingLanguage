@@ -1,0 +1,22 @@
+// no code starts and ends fucking live your life
+declare int,var1,23;
+declare string,message,"hello world";
+declare double,var2,4;
+add stack,var1,var2;
+print stack;
+jump my_label;
+declare string,rishit,"loves hetvi";
+label my_label;
+assign stack,rishit;
+assign stack,rishit;
+print "=======";
+print stack;
+print "=======";
+print "=======";
+print stack;
+print "=======";
+
+//print var1;
+print "this is a string";
+print message;
+halt;// this is a one liner
