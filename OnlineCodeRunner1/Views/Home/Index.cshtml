@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+
+<form action="/Home/Index" method="post">
+    Code here:<br>
+    <textarea name="code" cols="100" rows="20">
+    </textarea>
+    <br>
+    Arguments:
+    <input type="text" name="argument"><br>
+    <input type="submit" value="run">
+</form>
+
+@if(ViewData["output"] != null)
+{
+    <p> @ViewData["output"] </p>
+}

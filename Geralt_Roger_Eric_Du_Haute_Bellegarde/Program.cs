@@ -52,12 +52,19 @@ namespace Geralt_Roger_Eric_Du_Haute_Bellegarde
             DataArray = new List<object>();
         }
     }
-    class Program
+    public class MyProgram
     {
         private static string[] Lines;
+
+
+        public static string OutputStream;
+
+
+
         private static void ShowFatalError(string Message, int Line)
         {
             Console.WriteLine(Message + " at :- " + Line);
+            OutputStream +=  "\n"+Message + " at :- " + Line;
         }
         public static void Main(string[] args)
         {
@@ -66,7 +73,10 @@ namespace Geralt_Roger_Eric_Du_Haute_Bellegarde
                 if (args[0] != null)
                 {
                     if (args[0].TrimEnd().TrimStart() == "")
+                    {
                         Console.WriteLine("no file name provided");
+                        OutputStream = "no file name provided";
+                    }
                     else
                     {
                         ProgramClass prog = new ProgramClass();
@@ -96,8 +106,58 @@ namespace Geralt_Roger_Eric_Du_Haute_Bellegarde
             catch (Exception error)
             {
                 Console.WriteLine("no file name provided ");
+                OutputStream += "no file name provided ";
             }
         }
+
+
+        public static void RunProgramOnText(string ProgramCode,string[] Arguments)
+        {
+            try
+            {
+                if (ProgramCode != null & ProgramCode != "")
+                {
+                    ProgramClass prog = new ProgramClass();
+                    ConvertProgrameToLines(ProgramCode, false);
+                    OutputStream =  "your code output here:-    ";
+
+                    if (Arguments.Length > 0)
+                    {
+                        for (int i = 1; i < Arguments.Length; i++)
+                        {
+                            if (Instruction.IsNumberInt(Arguments[i]))
+                                prog.DataArray.Add(Convert.ToInt32(Arguments[i]));
+                            else if (Instruction.IsNumberDouble(Arguments[i]))
+                                prog.DataArray.Add(Convert.ToDouble(Arguments[i]));
+                            else
+                                prog.DataArray.Add(Arguments[i]);
+                        }
+                    }
+
+                    RemoveCommentsAndEmptyNewLines();
+                    CheckIfEveryLineEndsWithSemiColon();
+                    ProcessEachLinesForSpacesAndTabs();
+                    SetInstructions(ref prog);
+
+
+                    if (!CheckIfProgramContainsAnyConsoleInput(prog))
+                        RunProgram(prog);
+                    else
+                    {
+                        Console.WriteLine(" code had some thing illegal to not run ");
+                        OutputStream += " code had some thing illegal to not run ";
+                    }
+                }
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine(" error occured due to " + error.Message);
+                OutputStream += " error occured due to " + error.Message;
+            }
+        }
+
+
+
         private static void RunProgram(ProgramClass prog)
         {
             try
@@ -109,6 +169,7 @@ namespace Geralt_Roger_Eric_Du_Haute_Bellegarde
                         if (prog.GetInstructionPointer() > prog.CodeInstructions.Count - 1 || prog.GetInstructionPointer() < 0)
                         {
                             Console.WriteLine("reached out of the code boundary :- " + prog.GetInstructionPointer() + " use halt instruction if necessary");
+                            OutputStream += "reached out of the code boundary :- " + prog.GetInstructionPointer() + " use halt instruction if necessary";
                             break;
                         }
                         prog.CodeInstructions[prog.GetInstructionPointer()].ExecuteInstruction();
@@ -119,6 +180,7 @@ namespace Geralt_Roger_Eric_Du_Haute_Bellegarde
             catch (Exception error)
             {
                 Console.WriteLine("Program Halted");
+                OutputStream += "reached out of the code boundary :- " + prog.GetInstructionPointer() + " use halt instruction if necessary";
             }
         }
         private static void CheckIfEveryLineEndsWithSemiColon()
@@ -159,6 +221,48 @@ namespace Geralt_Roger_Eric_Du_Haute_Bellegarde
                 Console.WriteLine(" there were no data in file");
             }
         }
+        private static void ConvertProgrameToLines(string ProgramCode, bool showData = true)
+        {
+            try
+            {
+                Lines = ProgramCode.Split('\n');
+            }
+            catch (FileNotFoundException ex)
+            {
+                Console.WriteLine(" the file was not found ");
+            }
+            catch (NullReferenceException ex)
+            {
+                Console.WriteLine(" there were no data in file");
+            }
+
+
+        }
+
+
+        private static bool CheckIfProgramContainsAnyConsoleInput(ProgramClass program)
+        {
+            try
+            {
+                foreach (Instruction i in program.CodeInstructions)
+                {
+                    if (i is Input)
+                    {
+                        Console.WriteLine(" thisMyProgram execution cannot have input instructions");
+                        OutputStream += " thisMyProgram execution cannot have input instructions";
+                        return true;
+                    }
+                }
+                return false;
+            }
+            catch (Exception error)
+            {
+                Console.WriteLine("error occured due to " + error.Message);
+                OutputStream += "error occured due to " + error.Message;
+                return true;
+            }
+        }
+
         private static void RemoveCommentsAndEmptyNewLines()
         {
             try
@@ -514,7 +618,10 @@ namespace Geralt_Roger_Eric_Du_Haute_Bellegarde
             try
             {
                 if (IsString(PrintDataOrVar))
+                {
                     Console.WriteLine(PrintDataOrVar.ToString().Replace('"', ' '));
+                    MyProgram.OutputStream += PrintDataOrVar.ToString().Replace('"', ' ');
+                }
                 else
                 {
                     if (programReference.DataSegment.ContainsKey(PrintDataOrVar))
@@ -523,9 +630,15 @@ namespace Geralt_Roger_Eric_Du_Haute_Bellegarde
                         if (stringData != null)
                         {
                             if (IsString(stringData.ToString()))
+                            {
                                 Console.WriteLine(stringData.ToString().Replace('"', ' '));
+                               MyProgram.OutputStream += stringData.ToString().Replace('"', ' ');
+                            }
                             else
+                            {
                                 Console.WriteLine(stringData.ToString());
+                               MyProgram.OutputStream += stringData.ToString();
+                            }
                         }
                         else
                             ShowError("no data in the variable");
@@ -534,17 +647,29 @@ namespace Geralt_Roger_Eric_Du_Haute_Bellegarde
                     {
                         object o = programReference.DataStack.Pop();
                         if (IsString(o.ToString()))
+                        {
                             Console.WriteLine(o.ToString().Replace('"', ' '));
+                           MyProgram.OutputStream += o.ToString().Replace('"', ' ');
+                        }
                         else
+                        {
                             Console.WriteLine(o.ToString());
+                           MyProgram.OutputStream += o.ToString();
+                        }
                     }
                     else if (PrintDataOrVar.TrimStart().StartsWith("array@"))
                     {
                         object o = GetData(PrintDataOrVar);
                         if (IsString(o.ToString()))
+                        {
                             Console.WriteLine(o.ToString().Replace('"', ' '));
+                           MyProgram.OutputStream += o.ToString().Replace('"', ' ');
+                        }
                         else
+                        {
                             Console.WriteLine(o.ToString());
+                           MyProgram.OutputStream += o.ToString();
+                        }
                     }
 
                     else
