@@ -106,7 +106,7 @@ namespace Geralt_Roger_Eric_Du_Haute_Bellegarde
             catch (Exception error)
             {
                 Console.WriteLine("no file name provided ");
-                OutputStream += "no file name provided ";
+                OutputStream += "no file name provided";
             }
         }
 
