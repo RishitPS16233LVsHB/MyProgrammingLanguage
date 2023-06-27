@@ -29,6 +29,8 @@ namespace OnlineCodeRunner1.Controllers
         {
             MyProgram.RunProgramOnText(code, arguments.Split(','));
             ViewData["output"] = MyProgram.OutputStream;
+            ViewData["code"] = code;
+            ViewData["args"] = arguments;
             return View();
         }
 

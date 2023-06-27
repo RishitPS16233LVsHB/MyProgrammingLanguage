@@ -119,7 +119,7 @@ namespace Geralt_Roger_Eric_Du_Haute_Bellegarde
                 {
                     ProgramClass prog = new ProgramClass();
                     ConvertProgrameToLines(ProgramCode, false);
-                    OutputStream =  "your code output here:-    ";
+                    OutputStream =  "";
 
                     if (Arguments.Length > 0)
                     {
@@ -244,6 +244,9 @@ namespace Geralt_Roger_Eric_Du_Haute_Bellegarde
         {
             try
             {
+                if (program == null)
+                    return true;
+
                 foreach (Instruction i in program.CodeInstructions)
                 {
                     if (i is Input)
